@@ -1,5 +1,3 @@
-import java.sql.Connection
-
 // Strive for totality - constrain the input
 case class NonZeroInteger private(value: Int) {
   def toInt = value
