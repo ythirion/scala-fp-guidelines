@@ -121,3 +121,5 @@ def uglyFunction(input: UserInput): Option[UserInput] = {
   else None
 }
 uglyFunction(UserInput(90))
+
+

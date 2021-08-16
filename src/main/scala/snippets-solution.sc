@@ -17,7 +17,7 @@ def twelveDividedBy(n: NonZeroInteger): Int = {
     case 1 => 12
   }
 }
-twelveDividedBy(NonZeroInteger(2))
+twelveDividedBy(NonZeroInteger.toNonZeroInteger(2))
 
 // Strive for totality - constrain the input
 def twelveDividedBy(n: Int): Option[Int] = {
