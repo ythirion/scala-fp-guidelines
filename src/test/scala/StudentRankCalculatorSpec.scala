@@ -1,4 +1,3 @@
-import com.reallifeexample._
 import org.scalatest.flatspec.AnyFlatSpec
 
 class StudentRankCalculatorSpec extends AnyFlatSpec {
@@ -16,7 +15,5 @@ class StudentRankCalculatorSpec extends AnyFlatSpec {
     assert(StudentRankCalculator.calculateRank(student, 14) === Some('A'))
     // test the case >20 to prove our bugfix works
     assert(StudentRankCalculator.calculateRank(student, 21) === Some('A'))
-
   }
-
 }

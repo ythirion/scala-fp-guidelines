@@ -1,5 +1,3 @@
-package com.reallifeexample
-
 class IdCard(val number: Int,val country: Option[String])
 
 abstract class Student(val name: String, val idCard: Option[IdCard])
@@ -22,12 +20,12 @@ object StudentRankCalculator {
   val defaultWeight = 1
 
   def weightNote(note: Int, weighting: Double): Double = {
-    val weightNote = note * weighting
+    val weightNote = (note * weighting).round
     if (weightNote > maxNote) maxNote else weightNote
   }
 
   def applyWeight(note: Int, weighting: Double): Option[Char] = {
-    val weightedNote = weightNote(note, weighting).round
+    val weightedNote = weightNote(note, weighting)
 
     rankByNotes
       .find(kvp => kvp._1.contains(weightedNote))
@@ -48,5 +46,4 @@ object StudentRankCalculator {
 
   def calculateRank(student: Option[Student], note: Int): Option[Char] =
     student.flatMap(s => applyWeight(note, getWeighting(s)))
-
 }
