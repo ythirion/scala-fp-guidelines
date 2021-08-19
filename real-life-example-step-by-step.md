@@ -330,3 +330,23 @@ val student = Some { YoungStudent("Peter Griffin", Option(new IdCard(9, Option("
 calculateStudentRank(student, 20)
 calculateStudentRank(None, 20)
 ```
+
+11) Don't forget to add/update unit tests to validate your work
+```scala
+class StudentRankCalculatorSpec extends AnyFlatSpec {
+    "calculateRank" should "Return the correct rank for a given grade and person" in {
+    
+        val student = Some { YoungStudent("Peter Griffin", Option(new IdCard(9, Option("FR")))) }
+    
+        assert(calculateStudentRank(student, 4) === Some('D'))
+        assert(calculateStudentRank(student, 5) === Some('C'))
+        assert(calculateStudentRank(student, 10) === Some('B'))
+        assert(calculateStudentRank(studcalculateStudentRankent, 16) === Some('A'))
+    
+        // test the case >=14 && <15 to prove our bugfix works
+        assert(calculateStudentRank(student, 14) === Some('A'))
+        // test the case >20 to prove our bugfix works
+        assert(calculateStudentRank(student, 21) === Some('A'))
+    }
+}
+```
