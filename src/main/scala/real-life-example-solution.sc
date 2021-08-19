@@ -18,7 +18,7 @@ val maxNote = 20
 val defaultWeight = 1
 
 def weightNote(note: Int, weighting: Double): Double = {
-  val weightNote = note * weighting
+  val weightNote = (note * weighting).round
   if (weightNote > maxNote) maxNote else weightNote
 }
 
@@ -48,6 +48,11 @@ def calculateStudentRank(student: Option[Student], note: Int): Option[Char] =
 val student = Some {
   YoungStudent("Peter Griffin", Option(new IdCard(9, Option("FR"))))
 }
-calculateStudentRank(student, 20)
+calculateStudentRank(student, 20) // Some(A)
+calculateStudentRank(student, 4) // Some(D)
+calculateStudentRank(student, 5) // Some(C)
+calculateStudentRank(student, 10) // Some(B)
+calculateStudentRank(student, 16) // Some(A)
+calculateStudentRank(student, 14) // Some(A)
+calculateStudentRank(student, 21) // Some(A)
 calculateStudentRank(None, 20)
-
