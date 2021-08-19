@@ -183,7 +183,7 @@ def calculateRank(note: Int, weighting: Double = 1): Option[Char] = {
 ```scala
 val maxNote = 20
 def weightNote(note: Int, weighting: Double): Double = {
-  val weightNote = note * weighting
+  val weightNote = (note * weighting).round
   if (weightNote > maxNote) maxNote else weightNote
 }
 
@@ -299,7 +299,7 @@ val maxNote = 20
 val defaultWeight = 1
 
 def weightNote(note: Int, weighting: Double): Double = {
-  val weightNote = note * weighting
+  val weightNote = (note * weighting).round
   if (weightNote > maxNote) maxNote else weightNote
 }
 
@@ -327,11 +327,19 @@ def calculateStudentRank(student: Option[Student], note: Int): Option[Char] =
   student.flatMap(s => calculateRank(note, getWeighting(s)))
 
 val student = Some { YoungStudent("Peter Griffin", Option(new IdCard(9, Option("FR")))) }
-calculateStudentRank(student, 20)
+calculateStudentRank(student, 20) // Some(A)
+calculateStudentRank(student, 4) // Some(D)
+calculateStudentRank(student, 5) // Some(C)
+calculateStudentRank(student, 10) // Some(B)
+calculateStudentRank(student, 16) // Some(A)
+calculateStudentRank(student, 14) // Some(A)
+calculateStudentRank(student, 21) // Some(A)
 calculateStudentRank(None, 20)
 ```
 
 11) Don't forget to add/update unit tests to validate your work
+* To do so extract your solution into a scala class
+* Then write tests by using scalatest
 ```scala
 class StudentRankCalculatorSpec extends AnyFlatSpec {
     "calculateRank" should "Return the correct rank for a given grade and person" in {
